@@ -67,7 +67,6 @@ const handleBooking = async () => {
       {
         vehicleNumber,
         vehicleOwner,
-        bookedBy: user.email,
       }
     );
 
@@ -150,8 +149,6 @@ const availableSlots = totalSlots - occupiedSlots;
           {slot.isBooked && (
             <div className="mt-2 text-sm">
 
-              {slot.bookedBy === user.email ? (
-              <>
                 <p>
                   {slot.vehicleNumber}
                 </p>
@@ -163,10 +160,6 @@ const availableSlots = totalSlots - occupiedSlots;
                 <p>
                   {new Date(slot.bookedAt).toLocaleString()}
                 </p>
-              </>
-            ) : (
-              <p>Occupied</p>
-            )}
           </div>
           )}
         </div>

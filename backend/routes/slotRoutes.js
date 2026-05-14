@@ -85,9 +85,7 @@ router.put("/:id", async (req, res) => {
       slot.vehicleNumber = "";
 
       slot.vehicleOwner = "";
-
-      slot.bookedBy = "";
-
+      
       slot.bookedAt = null;
 
     } else {
@@ -98,8 +96,6 @@ router.put("/:id", async (req, res) => {
       slot.vehicleNumber = req.body.vehicleNumber;
 
       slot.vehicleOwner = req.body.vehicleOwner;
-
-      slot.bookedBy = req.body.bookedBy;
 
       slot.bookedAt = new Date();
     }
