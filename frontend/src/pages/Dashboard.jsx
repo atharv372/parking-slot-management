@@ -36,13 +36,22 @@ const [vehicleOwner, setVehicleOwner] = useState("");
 }, [navigate]);
 const toggleSlot = async (slot) => {
 
-  // If slot already booked -> unbook directly
   if (slot.isBooked) {
 
     try {
 
+      const user = JSON.parse(localStorage.getItem("user"));
+
+      const token = user.token;
+
       await axios.put(
-        `https://parking-backend-33il.onrender.com/api/slots/${slot._id}`
+        `https://parking-backend-3311.onrender.com/api/slots/${slot._id}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
 
       fetchSlots();
@@ -51,22 +60,29 @@ const toggleSlot = async (slot) => {
 
       console.log(err);
     }
-
   } else {
 
     // Open booking form popup
     setSelectedSlot(slot);
   }
-};
+ };    
 const handleBooking = async () => {
 
   try {
+  
+    const user =JSON.parse(localStorage.getItem("user"));
 
+    const token= user.token;
     await axios.put(
       `https://parking-backend-33il.onrender.com/api/slots/${selectedSlot._id}`,
       {
         vehicleNumber,
         vehicleOwner,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       }
     );
 

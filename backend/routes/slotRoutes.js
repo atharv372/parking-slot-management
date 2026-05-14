@@ -4,6 +4,8 @@ const Slot = require("../models/Slot");
 
 const router = express.Router();
 
+const { protect } = require("../middleware/authMiddleware");
+
 
 // ================= GET ALL SLOTS =================
 router.get("/", async (req, res) => {
@@ -65,7 +67,7 @@ router.post("/create", async (req, res) => {
   }
 });
 // ================= BOOK / UNBOOK SLOT =================
-router.put("/:id", async (req, res) => {
+router.put("/:id", protect, async (req, res) => {
 
   try {
 
@@ -80,13 +82,21 @@ router.put("/:id", async (req, res) => {
     // If slot is already booked -> unbook it
     if (slot.isBooked) {
 
+      if (!slot.bookedBy || slot.bookedBy.toString() !== req.user.id) {
+  return res.status(403).json({
+    message: "You can only unbook your own slot",
+      });
+    }
+
       slot.isBooked = false;
 
       slot.vehicleNumber = "";
 
       slot.vehicleOwner = "";
-      
+
       slot.bookedAt = null;
+
+      slot.bookedBy = null;
 
     } else {
 
@@ -96,6 +106,8 @@ router.put("/:id", async (req, res) => {
       slot.vehicleNumber = req.body.vehicleNumber;
 
       slot.vehicleOwner = req.body.vehicleOwner;
+
+      slot.bookedBy = req.user.id;
 
       slot.bookedAt = new Date();
     }
