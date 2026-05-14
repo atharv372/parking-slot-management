@@ -27,7 +27,12 @@ const slotSchema = new mongoose.Schema({
   type: String,
   default: "",
   },
-  
+
+  bookedBy: {
+  type: String,
+  default: "",
+  },
+
   bookedAt: {
   type: Date,
   default: null,
