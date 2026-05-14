@@ -12,12 +12,7 @@ const slotSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-
-  bookedBy: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-    default: null,
-  },
+  
   vehicleNumber: {
   type: String,
   default: "",
@@ -27,7 +22,7 @@ const slotSchema = new mongoose.Schema({
   type: String,
   default: "",
   },
-  
+
   bookedAt: {
   type: Date,
   default: null,
