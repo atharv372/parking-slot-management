@@ -114,6 +114,13 @@ router.put("/:id", protect, async (req, res) => {
 
     await slot.save();
 
+    console.log(
+      "Slot booked",
+      slot.slotNumber,
+      "by",
+      slot.bookedBy
+    )
+
     res.status(200).json({
       message: "Slot updated successfully",
       slot,
