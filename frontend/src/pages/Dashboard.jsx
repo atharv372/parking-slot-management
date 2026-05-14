@@ -45,7 +45,7 @@ const toggleSlot = async (slot) => {
       const token = user.token;
 
       await axios.put(
-        `https://parking-backend-3311.onrender.com/api/slots/${slot._id}`,
+        `https://parking-backend-33il.onrender.com/api/slots/${slot._id}`,
         {},
         {
           headers: {

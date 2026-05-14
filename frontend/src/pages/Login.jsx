@@ -35,7 +35,7 @@ function Login() {
       // SAVE USER
       localStorage.setItem(
         "user",
-        JSON.stringify(res.data.user)
+        JSON.stringify(res.data)
       );
 
       alert("Login successful");
