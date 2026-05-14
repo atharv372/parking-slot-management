@@ -18,7 +18,7 @@ const [vehicleOwner, setVehicleOwner] = useState("");
 
   const fetchSlots = async () => {
     try{
-    const res = await axios.get("http://localhost:5000/api/slots");
+    const res = await axios.get("https://parking-backend-33il.onrender.com/api/slots");
     setSlots(res.data);
    } catch (err) {
      console.log(err);
@@ -42,7 +42,7 @@ const toggleSlot = async (slot) => {
     try {
 
       await axios.put(
-        `http://localhost:5000/api/slots/${slot._id}`
+        `https://parking-backend-33il.onrender.com/api/slots/${slot._id}`
       );
 
       fetchSlots();
@@ -63,7 +63,7 @@ const handleBooking = async () => {
   try {
 
     await axios.put(
-      `http://localhost:5000/api/slots/${selectedSlot._id}`,
+      `https://parking-backend-33il.onrender.com/api/slots/${selectedSlot._id}`,
       {
         vehicleNumber,
         vehicleOwner,

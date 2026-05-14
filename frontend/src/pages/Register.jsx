@@ -29,7 +29,7 @@ function Register() {
     try {
 
       await axios.post(
-        "http://localhost:5000/api/auth/register",
+        "https://parking-backend-33il.onrender.com/api/auth/register",
         formData
       );
 
